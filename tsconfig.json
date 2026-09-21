@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/core" },
+    { "path": "packages/pi-ext" },
+    { "path": "packages/opencode-plugin" },
+    { "path": "packages/kilo-plugin" },
+    { "path": "packages/demo" }
+  ]
+}

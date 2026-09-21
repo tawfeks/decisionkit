@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "locate": {
+    "primary": {
+      "kind": "noul",
+      "text": "Is \"{file}\" the primary file for this task? Prefer implementation and documentation files over tests and fixtures."
+    }
+  }
+}

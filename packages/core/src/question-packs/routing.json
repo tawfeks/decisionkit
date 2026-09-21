@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "routing": {
+    "bestTool": {
+      "kind": "choice",
+      "text": "Which registered tool fully handles this request without LLM reasoning?",
+      "options": null
+    },
+    "confidence": {
+      "kind": "score",
+      "text": "Confidence that the tool fully resolves it with no further reasoning?",
+      "levels": ["none", "some", "high"]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "triage": {
+    "isNeeded": {
+      "kind": "noul",
+      "text": "Is this file needed for the current task?"
+    },
+    "scope": {
+      "kind": "choice",
+      "text": "Read whole file, head, tail, or a line range?",
+      "options": ["whole", "head", "tail", "range"]
+    }
+  }
+}

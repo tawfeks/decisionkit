@@ -1,0 +1,14 @@
+{
+  "name": "decisionkit-pi-dropin",
+  "version": "0.1.2",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@typesafe-ai/sdk": "0.6.0",
+    "decisionkit-core": "file:DECISIONKIT_CORE_PATH",
+    "decisionkit-pi-ext": "file:DECISIONKIT_PI_EXT_PATH"
+  },
+  "pi": {
+    "extensions": ["./src/index.ts"]
+  }
+}

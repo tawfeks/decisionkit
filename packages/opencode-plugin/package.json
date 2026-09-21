@@ -1,0 +1,26 @@
+{
+  "name": "decisionkit-opencode-plugin",
+  "version": "0.1.2",
+  "description": "opencode plugin adapter for decisionkit-core: guardrail, triage, critic, decisionkit_locate (routing stays pi-first)",
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "0.6.0",
+    "decisionkit-core": "*"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": "*"
+  },
+  "devDependencies": {
+    "@opencode-ai/plugin": "1.18.31",
+    "@types/node": "^22.20.3"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "license": "MIT"
+}

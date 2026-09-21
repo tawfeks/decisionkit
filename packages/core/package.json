@@ -1,0 +1,48 @@
+{
+  "name": "decisionkit-core",
+  "version": "0.1.2",
+  "description": "Host-agnostic DecisionKit (TypeSafe System-1) tiers: guardrail, routing, triage, critic + receipts ledger",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "decisionkit": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./cli": {
+      "types": "./dist/cli.d.ts",
+      "default": "./dist/cli.js"
+    },
+    "./host-hook": {
+      "types": "./dist/host-hook.d.ts",
+      "default": "./dist/host-hook.js"
+    },
+    "./mcp": {
+      "types": "./dist/mcp.d.ts",
+      "default": "./dist/mcp.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc --build && rm -rf dist/question-packs dist/eval-sets dist/skills && cp -R src/question-packs dist/question-packs && cp -R src/eval-sets dist/eval-sets && cp -R src/skills dist/skills",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "0.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.3",
+    "vitest": "3.2.4"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
+}

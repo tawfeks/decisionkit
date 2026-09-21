@@ -1,0 +1,26 @@
+# local dev workspace only — never shipped/published
+.local/
+.kilo/
+.env
+.DS_Store
+pi/
+node_modules/
+dist/
+*.tsbuildinfo
+.decisionkit
+
+# benchmark rigs: cloned fixtures, run copies, run artifacts
+.bench-run/
+.bench-demo/
+.bench-cache/
+.m3-run/
+.s0-run/
+.m3-cache/
+tested-repo/
+
+# docs: only curated docs ship (capability matrix + the context-routing design)
+docs/*
+!docs/capability-matrix.md
+!docs/design/
+docs/design/*
+!docs/design/context-routing.md

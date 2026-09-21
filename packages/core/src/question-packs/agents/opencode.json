@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "calibration": {
+    "method": "central default (measured on m2/m3/m4 rigs) + per-agent tier set verified against docs",
+    "date": "2026-09-21",
+    "sources": [
+      "https://opencode.ai/docs/plugins (verified 2026-09-21)"
+    ],
+    "notes": [
+      "No prompt-intercept hook that can skip the LLM turn, so the routing tier is absent (pi-only).",
+      "Hook surfaces verified: tool.execute.before (throw blocks), tool.execute.after (output rewrite), chat.message (part append), tool() registration.",
+      "Tool names are lowercase (read, bash, edit, write — doc examples)."
+    ]
+  },
+  "guardrail": {
+    "destructive": {
+      "kind": "noul",
+      "text": "Could this cause destructive, hard-to-reverse side effects?"
+    },
+    "severity": {
+      "kind": "score",
+      "text": "How much harm if unintended?",
+      "levels": [
+        "none",
+        "minor",
+        "serious"
+      ]
+    }
+  },
+  "triage": {
+    "isNeeded": {
+      "kind": "noul",
+      "text": "Is this file needed for the current task?"
+    },
+    "scope": {
+      "kind": "choice",
+      "text": "Read whole file, head, tail, or a line range?",
+      "options": [
+        "whole",
+        "head",
+        "tail",
+        "range"
+      ]
+    }
+  },
+  "critic": {
+    "failed": {
+      "kind": "noul",
+      "text": "Did this tool call fail, error, or otherwise not accomplish what it was invoked to do? Answer yes only if the result itself shows an error, an empty/missing outcome, or incomplete execution — not merely because the output is unremarkable."
+    },
+    "error": {
+      "kind": "noul",
+      "text": "Does the result itself show an error, a non-zero exit code, or an explicit failure message? Answer yes only if the failure is visible in the result text — not because the content is unhelpful, unremarkable, or unrelated to the broader task."
+    },
+    "empty": {
+      "kind": "noul",
+      "text": "Is this result empty or missing — no content, no confirmation, and no output of any kind? Answer yes only if there is literally nothing usable in the result text."
+    }
+  },
+  "locate": {
+    "primary": {
+      "kind": "noul",
+      "text": "Is \"{file}\" the primary file for this task? Prefer implementation and documentation files over tests and fixtures."
+    }
+  },
+  "s0": {
+    "gate": {
+      "kind": "noul",
+      "text": "Does completing this task require reading or changing files in this repository? Answer no only for pure conversation, general knowledge questions, or opinions that need no repo access."
+    },
+    "pickFile": {
+      "kind": "choice",
+      "text": "Given the digest above, which single candidate file is most likely still needed for this task? Answer none only if no candidate could contain anything the task needs beyond what the digest already covers.",
+      "options": null
+    },
+    "pickConfidence": {
+      "kind": "score",
+      "text": "How confident are you that the chosen candidate is needed for this task?",
+      "levels": [
+        "none",
+        "some",
+        "high"
+      ]
+    },
+    "sufficiency": {
+      "kind": "score",
+      "text": "Does this digest cover the files needed for the WHOLE task, so the work could be finished without further repo discovery (listing or searching to locate files)? Reading the listed files again later is expected; having to discover unlisted files is not. Rate the digest as a whole.",
+      "levels": [
+        "none",
+        "some",
+        "high"
+      ]
+    },
+    "isAnswerPresent": {
+      "kind": "noul",
+      "text": "Is the complete, verbatim answer to the task literally present in this digest — not derivable, not requiring reasoning or any further file access?"
+    },
+    "answerLine": {
+      "kind": "choice",
+      "text": "Which digest line contains the verbatim answer? Answer none if no single line is the complete answer.",
+      "options": null
+    }
+  }
+}

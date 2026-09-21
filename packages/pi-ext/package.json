@@ -1,0 +1,30 @@
+{
+  "name": "decisionkit-pi-ext",
+  "version": "0.1.2",
+  "description": "pi extension adapter for decisionkit-core: guardrail, turn routing, read triage, critic, decisionkit_locate, receipts",
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "0.6.0",
+    "decisionkit-core": "*"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "typebox": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "0.85.1",
+    "@types/node": "^22.20.3",
+    "typebox": "1.0.9",
+    "vitest": "3.2.4"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "license": "MIT"
+}

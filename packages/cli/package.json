@@ -1,0 +1,28 @@
+{
+  "name": "decisionkit-cli",
+  "version": "0.1.2",
+  "description": "A decision layer for your coding agent, pre-calibrated per agent. One command, any agent: npx decisionkit-cli init",
+  "type": "module",
+  "bin": {
+    "decisionkit": "./cli.js"
+  },
+  "files": [
+    "cli.js",
+    "README.md"
+  ],
+  "keywords": [
+    "ai",
+    "coding-agent",
+    "llm",
+    "routing",
+    "guardrails",
+    "cli"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "decisionkit-core": "^0.1.2"
+  }
+}

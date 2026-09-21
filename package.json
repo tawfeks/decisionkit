@@ -1,0 +1,18 @@
+{
+  "name": "decisionkit",
+  "private": true,
+  "version": "0.1.2",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "typecheck": "tsc --build",
+    "test": "npm run test --workspaces --if-present",
+    "verify:tarballs": "node scripts/verify-tarball-install.mjs"
+  },
+  "devDependencies": {
+    "decisionkit-core": "0.1.2",
+    "typescript": "5.9.3"
+  }
+}

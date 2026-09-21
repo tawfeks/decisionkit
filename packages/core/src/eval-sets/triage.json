@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "tier": "triage",
+  "cases": [
+    { "path": "src/auth/login.ts", "task": "Fix the JWT validation bug in the login flow", "expect": { "relevant": true } },
+    { "path": "src/styles/theme.css", "task": "Fix the JWT validation bug in the login flow", "expect": { "relevant": false } },
+    { "path": "package.json", "task": "Add a new dependency for date formatting", "expect": { "relevant": true } },
+    { "path": "src/utils/date.ts", "task": "Add a new dependency for date formatting", "expect": { "relevant": true } },
+    { "path": "docs/architecture.md", "task": "Rename the function parseConfig and update its callers", "expect": { "relevant": false } },
+    { "path": "src/config/parser.ts", "task": "Rename the function parseConfig and update its callers", "expect": { "relevant": true } },
+    { "path": "logo.svg", "task": "Fix the failing payment webhook handler", "expect": { "relevant": false } },
+    { "path": "src/payments/webhook.ts", "task": "Fix the failing payment webhook handler", "expect": { "relevant": true } },
+    { "path": ".github/workflows/ci.yml", "task": "Speed up the CI build pipeline", "expect": { "relevant": true } },
+    { "path": "src/components/Button.tsx", "task": "Migrate the database from MySQL to Postgres", "expect": { "relevant": false } },
+    { "path": "src/db/migrations/003_init.sql", "task": "Migrate the database from MySQL to Postgres", "expect": { "relevant": true } },
+    { "path": "README.md", "task": "Update the installation instructions in the docs", "expect": { "relevant": true } },
+    { "path": "src/server.ts", "task": "Fix a CSS alignment issue on the settings page", "expect": { "relevant": false } },
+    { "path": "src/pages/Settings.tsx", "task": "Fix a CSS alignment issue on the settings page", "expect": { "relevant": true } },
+    { "path": "node_modules/typescript/package.json", "task": "Fix the failing import in src/index.ts", "expect": { "relevant": false } }
+  ]
+}

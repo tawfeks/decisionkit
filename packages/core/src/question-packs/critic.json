@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "critic": {
+    "failed": {
+      "kind": "noul",
+      "text": "Did this tool call fail, error, or otherwise not accomplish what it was invoked to do? Answer yes only if the result itself shows an error, an empty/missing outcome, or incomplete execution — not merely because the output is unremarkable."
+    },
+    "error": {
+      "kind": "noul",
+      "text": "Does the result itself show an error, a non-zero exit code, or an explicit failure message? Answer yes only if the failure is visible in the result text — not because the content is unhelpful, unremarkable, or unrelated to the broader task."
+    },
+    "empty": {
+      "kind": "noul",
+      "text": "Is this result empty or missing — no content, no confirmation, and no output of any kind? Answer yes only if there is literally nothing usable in the result text."
+    }
+  }
+}

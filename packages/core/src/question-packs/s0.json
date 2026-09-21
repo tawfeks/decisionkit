@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "s0": {
+    "gate": {
+      "kind": "noul",
+      "text": "Does completing this task require reading or changing files in this repository? Answer no only for pure conversation, general knowledge questions, or opinions that need no repo access."
+    },
+    "pickFile": {
+      "kind": "choice",
+      "text": "Given the digest above, which single candidate file is most likely still needed for this task? Answer none only if no candidate could contain anything the task needs beyond what the digest already covers.",
+      "options": null
+    },
+    "pickConfidence": {
+      "kind": "score",
+      "text": "How confident are you that the chosen candidate is needed for this task?",
+      "levels": ["none", "some", "high"]
+    },
+    "sufficiency": {
+      "kind": "score",
+      "text": "Does this digest cover the files needed for the WHOLE task, so the work could be finished without further repo discovery (listing or searching to locate files)? Reading the listed files again later is expected; having to discover unlisted files is not. Rate the digest as a whole.",
+      "levels": ["none", "some", "high"]
+    },
+    "isAnswerPresent": {
+      "kind": "noul",
+      "text": "Is the complete, verbatim answer to the task literally present in this digest — not derivable, not requiring reasoning or any further file access?"
+    },
+    "answerLine": {
+      "kind": "choice",
+      "text": "Which digest line contains the verbatim answer? Answer none if no single line is the complete answer.",
+      "options": null
+    }
+  }
+}

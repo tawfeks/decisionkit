@@ -1,0 +1,21 @@
+{
+  "name": "decisionkit-demo",
+  "version": "0.1.2",
+  "description": "Standalone mini-agent showcase: no harness required, same decisionkit-core logic",
+  "type": "module",
+  "bin": {
+    "decisionkit-demo": "./dist/main.js"
+  },
+  "scripts": {
+    "start": "tsx src/main.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "0.6.0",
+    "decisionkit-core": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.3",
+    "tsx": "4.20.6"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "tier": "routing",
+  "tools": ["read", "bash", "ls", "grep", "edit"],
+  "cases": [
+    { "prompt": "what port is the dev server on", "files": ["package.json", "src/index.ts", "vite.config.ts"], "expect": { "action": "passthrough" } },
+    { "prompt": "read the file package.json", "files": ["package.json", "src/index.ts"], "expect": { "action": "route", "tool": "read" } },
+    { "prompt": "show me the contents of README.md", "files": ["README.md", "src/main.ts"], "expect": { "action": "route", "tool": "read" } },
+    { "prompt": "list the files in the current directory", "files": ["src", "package.json"], "expect": { "action": "route", "tool": "ls" } },
+    { "prompt": "what files are in this project", "files": ["src", "lib", "package.json"], "expect": { "action": "route", "tool": "ls" } },
+    { "prompt": "search the codebase for where handleError is defined", "files": ["src/errors.ts", "src/main.ts"], "expect": { "action": "route", "tool": "grep" } },
+    { "prompt": "find all occurrences of TODO in the repo", "files": ["src/a.ts", "docs/notes.md"], "expect": { "action": "route", "tool": "grep" } },
+    { "prompt": "rename the function parseConfig to loadConfig everywhere it's used", "files": ["src/config.ts", "src/main.ts"], "expect": { "action": "passthrough" } },
+    { "prompt": "fix the failing test in auth.test.ts", "files": ["src/auth.ts", "src/auth.test.ts"], "expect": { "action": "passthrough" } },
+    { "prompt": "refactor the database module to use connection pooling", "files": ["src/db.ts"], "expect": { "action": "passthrough" } },
+    { "prompt": "run the test suite", "files": ["package.json", "src/"], "expect": { "action": "route", "tool": "bash" } },
+    { "prompt": "what version of node does the CI use", "files": [".github/workflows/ci.yml", "package.json"], "expect": { "action": "passthrough" }, "alsoAcceptable": [{ "action": "route", "tool": "read" }] },
+    { "prompt": "add a login endpoint with JWT validation", "files": ["src/server.ts"], "expect": { "action": "passthrough" } },
+    { "prompt": "explain how the caching layer works", "files": ["src/cache.ts", "src/README.md"], "expect": { "action": "passthrough" } },
+    { "prompt": "print the first 50 lines of src/index.ts", "files": ["src/index.ts"], "expect": { "action": "route", "tool": "read" }, "alsoAcceptable": [{ "action": "route", "tool": "bash" }] },
+    { "prompt": "what does the error log say", "files": ["logs/error.log", "src/main.ts"], "expect": { "action": "passthrough" } },
+    { "prompt": "check whether node_modules exists in this directory", "files": ["node_modules", "package.json"], "expect": { "action": "route", "tool": "ls" } },
+    { "prompt": "write unit tests for the payment module", "files": ["src/payment.ts"], "expect": { "action": "passthrough" } },
+    { "prompt": "grep for uses of the deprecated apiVersion field", "files": ["src/api.ts", "src/legacy.ts"], "expect": { "action": "route", "tool": "grep" } },
+    { "prompt": "summarize the architecture of this repo and suggest improvements", "files": ["README.md", "src"], "expect": { "action": "passthrough" } }
+  ]
+}
