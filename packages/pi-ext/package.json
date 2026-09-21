@@ -29,7 +29,7 @@
     "@earendil-works/pi-coding-agent": "0.85.1",
     "@types/node": "^22.20.3",
     "typebox": "1.0.9",
-    "vitest": "3.2.4"
+    "vitest": "^4.1.11"
   },
   "files": [
     "src",
