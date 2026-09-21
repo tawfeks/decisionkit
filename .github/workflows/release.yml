@@ -13,16 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     environment: npm
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 24
           cache: npm
       - name: Check tag matches package version
         run: |
+          TAG="${GITHUB_REF#refs/tags/}"
           VERSION="v$(node -p "require('./package.json').version")"
-          if [ "$VERSION" != "$GITHUB_REF" ]; then
-            echo "tag $GITHUB_REF does not match package version $VERSION" >&2
+          if [ "$TAG" != "$VERSION" ]; then
+            echo "tag $TAG does not match package version $VERSION" >&2
             exit 1
           fi
       - run: npm ci
