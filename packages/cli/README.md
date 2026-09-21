@@ -1,4 +1,4 @@
-# decisionkit
+# DecisionKit
 
 <p align="center"><b>A decision layer, pre-calibrated per coding agent, that cuts slow, expensive LLM turns.</b></p>
 
