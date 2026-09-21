@@ -1,6 +1,15 @@
 {
   "name": "decisionkit-cli",
   "version": "0.1.2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tawfeks/decisionkit.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/tawfeks/decisionkit#readme",
+  "bugs": {
+    "url": "https://github.com/tawfeks/decisionkit/issues"
+  },
   "description": "A decision layer for your coding agent, pre-calibrated per agent. One command, any agent: npx decisionkit-cli init",
   "type": "module",
   "bin": {

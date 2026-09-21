@@ -1,6 +1,15 @@
 {
   "name": "decisionkit-pi-ext",
   "version": "0.1.2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tawfeks/decisionkit.git",
+    "directory": "packages/pi-ext"
+  },
+  "homepage": "https://github.com/tawfeks/decisionkit#readme",
+  "bugs": {
+    "url": "https://github.com/tawfeks/decisionkit/issues"
+  },
   "description": "pi extension adapter for decisionkit-core: guardrail, turn routing, read triage, critic, decisionkit_locate, receipts",
   "type": "module",
   "main": "./src/index.ts",

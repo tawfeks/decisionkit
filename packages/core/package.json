@@ -1,6 +1,15 @@
 {
   "name": "decisionkit-core",
   "version": "0.1.2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tawfeks/decisionkit.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/tawfeks/decisionkit#readme",
+  "bugs": {
+    "url": "https://github.com/tawfeks/decisionkit/issues"
+  },
   "description": "Host-agnostic DecisionKit (TypeSafe System-1) tiers: guardrail, routing, triage, critic + receipts ledger",
   "type": "module",
   "main": "./dist/index.js",

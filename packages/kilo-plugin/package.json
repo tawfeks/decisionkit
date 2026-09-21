@@ -1,6 +1,15 @@
 {
   "name": "decisionkit-kilo-plugin",
   "version": "0.1.2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tawfeks/decisionkit.git",
+    "directory": "packages/kilo-plugin"
+  },
+  "homepage": "https://github.com/tawfeks/decisionkit#readme",
+  "bugs": {
+    "url": "https://github.com/tawfeks/decisionkit/issues"
+  },
   "description": "Kilo plugin adapter for decisionkit-core: guardrail, triage, critic, decisionkit_locate (routing stays pi-first)",
   "type": "module",
   "main": "./src/index.ts",
