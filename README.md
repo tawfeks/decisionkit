@@ -1,6 +1,6 @@
 # DecisionKit
 
-<p align="center"><b>A decision layer, pre-calibrated per coding agent, that cuts slow, expensive LLM turns.</b></p>
+<p align="center"><b>A decision layer, pre-calibrated per coding agent, that deletes slow, expensive LLM turns.</b></p>
 
 ## Why it exists
 
@@ -83,7 +83,7 @@ If a tier fails its gate on your repo, that is a default-pack bug: fix it in the
 
 ## Measured field results, runs 4–6 — S0 on a focused code-change prompt (A/B, 2026-09-21)
 
-Three more independent A/B sessions (runs 4–6) on the same outbidlaunch Astro/Cloudflare leaderboard app as the 2026-09-20 section below, same repo both arms, one prompt in both arms: a focused code change — *"fix the issue of having greenland and some other countries are not showing in 3d map (don't edit anything else like changing how ocean or water in earth)"*. Model: `openrouter/z-ai/glm-5.3-flash:low`. Raw per-run metrics: `.bench-run/run{4,5,6}-{base,s0}-pA.json`. ↑ = session-cumulative input tokens.
+Three more independent A/B sessions (runs 4–6) on the same outbidlaunch Astro/Cloudflare leaderboard app as the 2026-09-20 section below, same repo both arms, one prompt in both arms: a focused code change — *"fix the issue of having greenland and some other countries are not showing in 3d map (don't edit anything else like changing how ocean or water in earth)"*. Both arms ran on **pi** — already the famously minimal harness — so this is debloating an already-minimal baseline, not trimming a bloated one. Model: `openrouter/z-ai/glm-5.3-flash:low`. Raw per-run metrics: `.bench-run/run{4,5,6}-{base,s0}-pA.json`. ↑ = session-cumulative input tokens.
 
 | Metric | with DecisionKit | baseline | headline |
 |---|---|---|---|
@@ -99,7 +99,7 @@ Three more independent A/B sessions (runs 4–6) on the same outbidlaunch Astro/
 | DecisionKit (jev) tax | $0.00019 / 0.00016 / 0.00015 | — | 4–6 calls/session, p50 427–942ms/call, p95 1040–1581ms, **0 fail-opens** |
 | S0 digest | injected, 1245 chars, `s0.wasted = 0` (vs 4–5 on the 2026-09-20 runs) | — | picked exactly `world.geo.json` + `VisitMap.tsx`; s0 latency 3.5–3.8s total across 3 calls (~1.2s each) |
 
-Honest caveats: N=1 prompt × 3 runs, one fixture class, one model (`glm-5.3-flash:low`) — the eval protocol (N≥3, ≥2 fixture classes) is still the ship gate; the ↓13–45% cost delta of the 2026-09-20 runs became ↓61–85% here because this prompt class is a single-file edit the digest hits exactly — do not generalize the ratio; baseline's 2/3 verify-gate score is a single sample, not an accuracy claim; DecisionKit tax is a larger share (~12–16%) of the much smaller s0 session cost than in the 2026-09-20 runs.
+Honest caveats: N=1 prompt × 3 runs, one fixture class, one model (`glm-5.3-flash:low`) — the eval protocol (N≥3, ≥2 fixture classes) is still the ship gate; baseline is stock pi, already the most minimal harness around — a heavier host would likely show a larger delta, not a smaller one; the ↓13–45% cost delta of the 2026-09-20 runs became ↓61–85% here because this prompt class is a single-file edit the digest hits exactly — do not generalize the ratio; baseline's 2/3 verify-gate score is a single sample, not an accuracy claim; DecisionKit tax is a larger share (~12–16%) of the much smaller s0 session cost than in the 2026-09-20 runs.
 
 ## Measured field results — S0 on real pi terminal (A/B, v0.1.2 — 2026-09-20)
 

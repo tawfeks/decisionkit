@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" font-family="Charter, 'Iowan Old Style', Georgia, 'Times New Roman', serif" role="img" aria-label="Stock pi agent loop: prompt, LLM turn deciding one step, tools run, results append, transcript re-sent each pass">
+  <style>
+    svg {
+      --g-paper: #f2fafb;
+      --g-ink: #1c2024;
+      --g-muted: #60646c;
+      --g-box-base: #e2e6ea;
+    }
+    .bg { fill: var(--g-paper); }
+    .ink { fill: var(--g-ink); }
+    .muted { fill: var(--g-muted); }
+    .box-base { fill: var(--g-box-base); stroke: #c2c8ce; stroke-width: 1; }
+    .flow { stroke: var(--g-ink); stroke-width: 1.5; fill: none; }
+    .loop { stroke: var(--g-muted); stroke-width: 1.25; fill: none; }
+    .box-title { font-size: 17px; font-weight: 600; }
+    .box-sub { font-size: 13px; font-style: italic; }
+  </style>
+  <rect class="bg" width="1000" height="400"/>
+  <text class="ink" x="500" y="44" text-anchor="middle" font-size="22" font-weight="700">Stock pi: one loop, every judgment inside an LLM turn</text>
+  <text class="muted" x="500" y="70" text-anchor="middle" font-size="14" font-style="italic">no planning phase, no steering hooks — the model sees the whole transcript and decides one step per turn</text>
+
+  <rect class="box-base" x="40" y="140" width="200" height="88" rx="3"/>
+  <text class="box-title ink" x="140" y="178" text-anchor="middle">prompt</text>
+  <text class="box-sub muted" x="140" y="200" text-anchor="middle">one code change</text>
+
+  <rect class="box-base" x="280" y="140" width="200" height="88" rx="3"/>
+  <text class="box-title ink" x="380" y="170" text-anchor="middle">LLM turn</text>
+  <text class="box-sub muted" x="380" y="192" text-anchor="middle">decides one step: gate bash,</text>
+  <text class="box-sub muted" x="380" y="210" text-anchor="middle">pick files, spot failures</text>
+
+  <rect class="box-base" x="520" y="140" width="200" height="88" rx="3"/>
+  <text class="box-title ink" x="620" y="178" text-anchor="middle">tools run</text>
+  <text class="box-sub muted" x="620" y="200" text-anchor="middle">read · bash · edit</text>
+
+  <rect class="box-base" x="760" y="140" width="200" height="88" rx="3"/>
+  <text class="box-title ink" x="860" y="170" text-anchor="middle">results append</text>
+  <text class="box-sub muted" x="860" y="192" text-anchor="middle">whole transcript re-sent</text>
+  <text class="box-sub muted" x="860" y="210" text-anchor="middle">next turn</text>
+
+  <line class="flow" x1="240" y1="184" x2="274" y2="184"/><polygon class="ink" points="274,179.5 284,184 274,188.5"/>
+  <line class="flow" x1="480" y1="184" x2="514" y2="184"/><polygon class="ink" points="514,179.5 524,184 514,188.5"/>
+  <line class="flow" x1="720" y1="184" x2="754" y2="184"/><polygon class="ink" points="754,179.5 764,184 754,188.5"/>
+
+  <path class="loop" d="M 860 228 L 860 274 L 380 274 L 380 234"/>
+  <polygon class="muted" points="375.5,236 380,226 384.5,236"/>
+  <text class="muted" x="620" y="300" text-anchor="middle" font-size="15" font-style="italic">each pass = one more LLM turn — every judgment in the loop is paid for in a frontier turn</text>
+
+  <text class="muted" x="960" y="348" text-anchor="end" font-size="12" font-style="italic">Loop per pi's event surface: input → agent turns (tool_call / tool_result) → agent_end</text>
+  <text class="muted" x="960" y="368" text-anchor="end" font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">@TawfekSraj</text>
+</svg>

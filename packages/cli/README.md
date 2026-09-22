@@ -1,6 +1,6 @@
 # DecisionKit
 
-<p align="center"><b>A decision layer, pre-calibrated per coding agent, that cuts slow, expensive LLM turns.</b></p>
+<p align="center"><b>A decision layer, pre-calibrated per coding agent, that deletes slow, expensive LLM turns.</b></p>
 
 DecisionKit turns your coding agent into a System-1/System-2 pair: cheap, fast, typed judgments — guardrail gating, tool-result critique, file-location triage — move to ~100ms typed calls, and the frontier LLM only does work that requires generation. On pi it goes further: Tier 2 turn routing deletes whole LLM round trips for mechanical requests. Every decision is logged to `.decisionkit/receipts.jsonl`.
 

@@ -1,6 +1,6 @@
 ---
 name: decisionkit-bench-fixture
-description: Create or rewrite a bench/ fixture preset for the jev-harness A/B benchmark — turning any repo into a reproducible benchmark with a shipped prompt set and a deterministic verify() pass/fail plus gates(). Use when the user wants to benchmark DecisionKit on a new repo, add a fixture for their own repo, author bench prompts, or define fix-quality pass/fail criteria. Not for running the bench (use bench/run.ts directly) or for calibrating question packs (use decisionkit-calibrate).
+description: Create or rewrite a bench/ fixture preset for the DecisionKit A/B benchmark — turning any repo into a reproducible benchmark with a shipped prompt set and a deterministic verify() pass/fail plus gates(). Use when the user wants to benchmark DecisionKit on a new repo, add a fixture for their own repo, author bench prompts, or define fix-quality pass/fail criteria. Not for running the bench (use bench/run.ts directly) or for calibrating question packs (use decisionkit-calibrate).
 ---
 
 # Authoring a bench fixture

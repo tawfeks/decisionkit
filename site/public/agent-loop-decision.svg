@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" font-family="Charter, 'Iowan Old Style', Georgia, 'Times New Roman', serif" role="img" aria-label="The same pi loop with four typed jev intercepts: routing on input, S0 digest between prompt and first LLM turn, guardrail on tool calls, triage and critic on tool results">
+  <style>
+    svg {
+      --g-paper: #f2fafb;
+      --g-ink: #1c2024;
+      --g-muted: #60646c;
+      --g-box-base: #e2e6ea;
+      --g-accent: #00a2c7;
+      --g-accent-ink: #107d98;
+      --g-accent-soft: #d3f2f8;
+    }
+    .bg { fill: var(--g-paper); }
+    .ink { fill: var(--g-ink); }
+    .muted { fill: var(--g-muted); }
+    .txt-dk { fill: var(--g-accent-ink); }
+    .box-base { fill: var(--g-box-base); stroke: #c2c8ce; stroke-width: 1; }
+    .chip { fill: var(--g-accent-soft); stroke: var(--g-accent); stroke-width: 1.25; }
+    .flow { stroke: var(--g-ink); stroke-width: 1.5; fill: none; }
+    .loop { stroke: var(--g-muted); stroke-width: 1.25; fill: none; }
+    .tap { stroke: var(--g-accent-ink); stroke-width: 1.5; fill: none; stroke-dasharray: 4 3; }
+    .box-title { font-size: 17px; font-weight: 600; }
+    .box-sub { font-size: 13px; font-style: italic; }
+    .chip-title { font-size: 14px; font-weight: 700; }
+    .chip-sub { font-size: 12px; font-style: italic; }
+  </style>
+  <rect class="bg" width="1000" height="620"/>
+  <text class="ink" x="500" y="44" text-anchor="middle" font-size="22" font-weight="700">Same loop, four typed jev intercepts</text>
+  <text class="muted" x="500" y="70" text-anchor="middle" font-size="14" font-style="italic">nothing else changes — the judgments just stop being paid for in LLM turns</text>
+
+  <!-- ============ the identical skeleton ============ -->
+  <rect class="box-base" x="40" y="250" width="200" height="88" rx="3"/>
+  <text class="box-title ink" x="140" y="288" text-anchor="middle">prompt</text>
+  <text class="box-sub muted" x="140" y="310" text-anchor="middle">same prompt</text>
+
+  <rect class="box-base" x="280" y="250" width="200" height="88" rx="3"/>
+  <text class="box-title ink" x="380" y="280" text-anchor="middle">LLM turn</text>
+  <text class="box-sub muted" x="380" y="302" text-anchor="middle">turn 1 starts with the repo</text>
+  <text class="box-sub muted" x="380" y="320" text-anchor="middle">digest already drawn</text>
+
+  <rect class="box-base" x="520" y="250" width="200" height="88" rx="3"/>
+  <text class="box-title ink" x="620" y="288" text-anchor="middle">tools run</text>
+  <text class="box-sub muted" x="620" y="310" text-anchor="middle">read · bash · edit</text>
+
+  <rect class="box-base" x="760" y="250" width="200" height="88" rx="3"/>
+  <text class="box-title ink" x="860" y="288" text-anchor="middle">results append</text>
+  <text class="box-sub muted" x="860" y="310" text-anchor="middle">same transcript rule</text>
+
+  <line class="flow" x1="240" y1="294" x2="274" y2="294"/><polygon class="ink" points="274,289.5 284,294 274,298.5"/>
+  <line class="flow" x1="480" y1="294" x2="514" y2="294"/><polygon class="ink" points="514,289.5 524,294 514,298.5"/>
+  <line class="flow" x1="720" y1="294" x2="754" y2="294"/><polygon class="ink" points="754,289.5 764,294 754,298.5"/>
+
+  <path class="loop" d="M 860 338 L 860 384 L 380 384 L 380 344"/>
+  <polygon class="muted" points="375.5,346 380,336 384.5,346"/>
+  <text class="muted" x="620" y="410" text-anchor="middle" font-size="15" font-style="italic">with the digest pre-answering discovery, the loop needs far fewer passes</text>
+
+  <!-- ============ intercept 1: routing (on input) ============ -->
+  <rect class="chip" x="40" y="130" width="270" height="56" rx="3"/>
+  <text class="chip-title txt-dk" x="56" y="152">1 · routing — pi only, on input</text>
+  <text class="chip-sub muted" x="56" y="172">mechanical prompt? → tool runs directly, turn deleted</text>
+  <path class="tap" d="M 140 186 L 140 244"/>
+  <polygon class="txt-dk" points="135.5,242 140,252 144.5,242"/>
+
+  <!-- ============ intercept 2: S0 (after prompt, before first turn) ============ -->
+  <rect class="chip" x="350" y="130" width="310" height="56" rx="3"/>
+  <text class="chip-title txt-dk" x="366" y="152">2 · S0 digest — after prompt, before turn 1</text>
+  <text class="chip-sub muted" x="366" y="172">local sweep + 1 typed call → context, cache-stable</text>
+  <path class="tap" d="M 505 186 L 505 216 L 260 216 L 260 288"/>
+  <polygon class="txt-dk" points="255.5,286 260,296 264.5,286"/>
+
+  <!-- ============ intercept 3: guardrail (on tool calls) ============ -->
+  <rect class="chip" x="420" y="450" width="270" height="56" rx="3"/>
+  <text class="chip-title txt-dk" x="436" y="472">3 · guardrail — on each tool call</text>
+  <text class="chip-sub muted" x="436" y="492">destructive bash blocked · fail-open</text>
+  <path class="tap" d="M 620 450 L 620 344"/>
+  <polygon class="txt-dk" points="615.5,346 620,336 624.5,346"/>
+
+  <!-- ============ intercept 4: triage + critic (on results) ============ -->
+  <rect class="chip" x="720" y="450" width="240" height="56" rx="3"/>
+  <text class="chip-title txt-dk" x="736" y="472">4 · triage + critic — on results</text>
+  <text class="chip-sub muted" x="736" y="492">irrelevant reads stubbed · failures flagged</text>
+  <path class="tap" d="M 860 450 L 860 344"/>
+  <polygon class="txt-dk" points="855.5,346 860,336 864.5,346"/>
+
+  <text class="txt-dk" x="500" y="548" text-anchor="middle" font-size="14.5" font-style="italic">every intercept is a typed jev call (~100ms–1s, fail-open) · every decision → <tspan font-style="normal" font-weight="700">receipts.jsonl</tspan></text>
+
+  <text class="muted" x="960" y="580" text-anchor="end" font-size="12" font-style="italic">Same event surface as the diagram above: input, tool_call, tool_result</text>
+  <text class="muted" x="960" y="600" text-anchor="end" font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">@TawfekSraj</text>
+</svg>

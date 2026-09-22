@@ -1,6 +1,6 @@
 # decisionkit-core
 
-<p align="center"><b>A decision layer, pre-calibrated per coding agent, that cuts slow, expensive LLM turns.</b></p>
+<p align="center"><b>A decision layer, pre-calibrated per coding agent, that deletes slow, expensive LLM turns.</b></p>
 
 The host-agnostic core of DecisionKit: System-1 tiers (guardrail, S0 context, triage, critic — and pi-only turn routing via the pi adapter), data-calibrated question packs, and the receipts ledger. It bolts onto a frontier loop it doesn't own: the LLM only does work that requires generation, every decision is logged, and every tier fails open — if DecisionKit is slow or down, the agent behaves exactly like baseline.
 

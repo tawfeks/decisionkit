@@ -1,0 +1,564 @@
+---
+import '../styles/global.css';
+
+const { frontmatter } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const xProfile = import.meta.env.PUBLIC_X_PROFILE;
+const xUrl = xProfile ? xProfile : '#';
+const author = import.meta.env.PUBLIC_AUTHOR_NAME;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(`${base}/benchmark-graph-og.png`, Astro.site);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{frontmatter.title}</title>
+    <meta name="description" content={frontmatter.description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DecisionKit" />
+    <meta property="og:title" content={frontmatter.title} />
+    <meta property="og:description" content={frontmatter.description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="690" />
+    <meta property="og:image:alt" content="Bar graph comparing baseline vs Jev-powered DecisionKit sessions across five metrics" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={frontmatter.title} />
+    <meta name="twitter:description" content={frontmatter.description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <link rel="icon" type="image/x-icon" href={`${base}/favicon.ico`} sizes="16x16 32x32 48x48 64x64 128x128 256x256" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <script is:inline>
+      const t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    </script>
+    <style is:global>
+      * { box-sizing: border-box; }
+      ::selection { background: var(--mark); }
+      html { font-size: 18px; }
+      body {
+        margin: 0;
+        font-family: Charter, 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.75;
+        transition: background 0.2s ease, color 0.2s ease;
+      }
+      a { color: var(--accent-ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+      a:hover { text-decoration-thickness: 2px; }
+
+      .topbar { position: fixed; top: 14px; right: 18px; z-index: 10; }
+      .theme-toggle {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 40px; height: 40px;
+        border: 1px solid var(--rule); background: transparent; color: var(--muted);
+        cursor: pointer; transition: color 0.15s ease, border-color 0.15s ease;
+      }
+      .theme-toggle:hover { color: var(--accent-ink); border-color: var(--accent-ink); }
+      .theme-toggle svg { width: 19px; height: 19px; }
+
+      main { max-width: 42rem; margin: 0 auto; padding: 0 22px; }
+
+      header { padding: 84px 0 0; }
+      .kicker {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--accent-ink); margin: 0 0 22px;
+      }
+      h1 {
+        font-size: 3rem; line-height: 1.12; font-weight: 700;
+        letter-spacing: -0.015em; margin: 0 0 22px;
+        color: var(--heading);
+      }
+      .standfirst {
+        font-size: 1.22rem; font-style: italic; color: var(--muted);
+        margin: 0 0 30px; line-height: 1.5;
+      }
+      .meta {
+        display: flex; justify-content: space-between; gap: 12px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+        color: var(--muted);
+        border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule);
+        padding: 10px 2px; margin-bottom: 48px;
+      }
+      .byline {
+        display: inline-flex; align-items: center; gap: 7px;
+        color: var(--muted); text-decoration: none;
+        transition: color 0.15s ease;
+      }
+      .byline:hover { color: var(--accent-ink); }
+      .byline svg { width: 11px; height: 11px; fill: currentColor; }
+
+      article > :first-child { margin-top: 0; }
+      h2 {
+        font-size: 1.55rem; line-height: 1.25; letter-spacing: -0.01em;
+        color: var(--heading);
+        margin: 3rem 0 1rem;
+      }
+      h3 { font-size: 1.2rem; margin: 2.2rem 0 0.8rem; color: var(--heading); }
+      p { margin: 0 0 1.2rem; }
+      article > p:first-of-type::first-letter {
+        float: left;
+        font-size: 3.6em; line-height: 0.82;
+        font-weight: 700; color: var(--accent-ink);
+        padding: 0.06em 0.12em 0 0;
+      }
+      ul, ol { margin: 0 0 1.2rem; padding-left: 1.4rem; color: var(--muted); }
+      li { margin: 0.55rem 0; }
+      li::marker { color: var(--accent-ink); }
+      li b, li strong { color: var(--ink); }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.82em;
+        background: var(--code-bg);
+        border: 1px solid var(--rule);
+        padding: 0.1em 0.35em;
+      }
+      pre {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.88rem; line-height: 1.65;
+        background: var(--ink);
+        color: var(--paper);
+        padding: 1.15rem 1.5rem;
+        overflow-x: auto;
+        margin: 1.6rem 0 1.8rem;
+      }
+      pre code {
+        background: transparent;
+        border: 0;
+        padding: 0;
+        font-size: inherit;
+        color: inherit;
+      }
+
+      blockquote {
+        margin: 1.8rem 0;
+        padding: 0.2rem 0 0.2rem 1.4rem;
+        border-left: 2px solid var(--accent);
+        color: var(--muted);
+        font-style: italic;
+      }
+      blockquote p { margin-bottom: 0.8rem; }
+      blockquote p:last-child { margin-bottom: 0; }
+
+      figure { margin: 2rem 0; }
+      figure img {
+        width: 100%; height: auto; display: block;
+        border: 1px solid var(--rule);
+      }
+      figcaption {
+        font-size: 0.85rem; color: var(--muted); font-style: italic;
+        margin-top: 12px; text-align: center;
+      }
+
+      /* Full-width image toggle: tap/click expands, tap/click again restores.
+         Long press and multi-touch deliberately do nothing. */
+      article .img-frame {
+        position: relative;
+        display: block;
+        margin: 2rem 0;
+      }
+      article .img-frame img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--rule);
+        cursor: zoom-in;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-user-drag: none;
+        touch-action: manipulation;
+      }
+      article .img-frame img:focus-visible {
+        outline: 2px solid var(--accent-ink);
+        outline-offset: 2px;
+      }
+      /* Pulsing dot: hints the image is interactive */
+      article .img-frame::after {
+        content: '';
+        position: absolute;
+        top: 62%;
+        left: 62%;
+        transform: translate(-50%, -50%);
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow:
+          0 0 0 2px var(--paper),
+          0 0 0 2px rgba(0, 162, 199, 0.45);
+        animation: img-dot 2.2s ease-out infinite;
+        pointer-events: none;
+      }
+      @keyframes img-dot {
+        0% {
+          box-shadow:
+            0 0 0 2px var(--paper),
+            0 0 0 2px rgba(0, 162, 199, 0.45);
+        }
+        70% {
+          box-shadow:
+            0 0 0 2px var(--paper),
+            0 0 0 12px rgba(0, 162, 199, 0);
+        }
+        100% {
+          box-shadow:
+            0 0 0 2px var(--paper),
+            0 0 0 2px rgba(0, 162, 199, 0.45);
+        }
+      }
+      /* Share button: shares/copies the image's direct URL */
+      article .img-share {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent);
+        border-radius: 50%;
+        background: var(--paper);
+        color: var(--accent-ink);
+        cursor: pointer;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+        transition: color 0.15s ease, border-color 0.15s ease;
+      }
+      article .img-share:hover { color: var(--accent-ink); border-color: var(--accent-ink); }
+      article .img-share:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+      article .img-share svg { width: 14px; height: 14px; }
+      article .img-share.is-copied { color: var(--accent-ink); border-color: var(--accent-ink); }
+      article .img-frame.is-expanded .img-share { display: none; }
+
+      /* Share menu: two options anchored to the share button */
+      .share-menu {
+        position: absolute;
+        bottom: 46px;
+        right: 0;
+        z-index: 2;
+        display: none;
+        flex-direction: column;
+        min-width: 172px;
+        padding: 4px;
+        border: 1px solid var(--rule);
+        background: var(--paper);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+      }
+      .share-menu.is-open { display: flex; }
+      .share-menu button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        padding: 8px 10px;
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        font-family: inherit;
+        font-size: 0.85rem;
+        text-align: left;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .share-menu button:hover { background: var(--code-bg); color: var(--accent-ink); }
+      .share-menu button:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: -2px; }
+      .share-menu button svg { width: 14px; height: 14px; flex: none; }
+      @keyframes img-dot {
+        0% { box-shadow: 0 0 0 0 rgba(0, 162, 199, 0.45); }
+        70% { box-shadow: 0 0 0 9px rgba(0, 162, 199, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(0, 162, 199, 0); }
+      }
+      article .img-frame.is-expanded img {
+        width: 100vw;
+        max-width: 100vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: zoom-out;
+      }
+      article .img-frame.is-expanded::after { content: none; }
+      html:has(article .img-frame.is-expanded) { overflow-x: clip; }
+      @media (prefers-reduced-motion: reduce) {
+        article .img-frame::after { animation: none; }
+      }
+
+      hr { border: 0; border-top: 1px solid var(--rule); margin: 3rem 0; }
+
+      footer {
+        margin-top: 72px;
+        border-top: 1px solid var(--ink);
+        padding: 20px 2px 80px;
+        display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      }
+      footer small {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+        color: var(--muted);
+      }
+      .x-link { display: inline-flex; align-items: center; }
+      .x-link svg { width: 20px; height: 20px; fill: currentColor; }
+
+      @media (max-width: 640px) {
+        html { font-size: 16.5px; }
+        h1 { font-size: 2.3rem; }
+        header { padding-top: 56px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Toggle color theme"
+        title="Theme: auto"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <rect x="3" y="4" width="18" height="13" rx="2"></rect>
+          <path d="M8 21h8m-4-4v4"></path>
+        </svg>
+      </button>
+    </div>
+    <main>
+      <header>
+        {frontmatter.kicker && <p class="kicker">{frontmatter.kicker}</p>}
+        <h1>{frontmatter.title}</h1>
+        {frontmatter.standfirst && <p class="standfirst">{frontmatter.standfirst}</p>}
+        <div class="meta">
+          <span>{frontmatter.date}</span>
+          <a class="byline" href={xUrl} target="_blank" rel="noopener noreferrer">
+            {author}
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+        </div>
+      </header>
+
+      <article>
+        <slot />
+      </article>
+
+      <footer>
+        <small>© {new Date().getFullYear()}</small>
+        <a class="x-link" href={xUrl} aria-label="Follow on X" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </a>
+      </footer>
+    </main>
+    <script>
+      const btn = document.getElementById('theme-toggle');
+      const icons = {
+        light:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.3 11.3 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>',
+        dark:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>',
+        auto:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8m-4-4v4"></path></svg>',
+      };
+      const labels = { light: 'Light', dark: 'Dark', auto: 'Auto (system)' };
+      const order = ['auto', 'light', 'dark'];
+      const get = () => localStorage.getItem('theme') || 'auto';
+      const render = () => {
+        const t = get();
+        btn.innerHTML = icons[t];
+        btn.title = `Theme: ${labels[t]}`;
+        btn.setAttribute('aria-label', `Color theme: ${labels[t]}. Click to change`);
+      };
+      btn.addEventListener('click', () => {
+        const next = order[(order.indexOf(get()) + 1) % order.length];
+        localStorage.setItem('theme', next);
+        if (next === 'auto') delete document.documentElement.dataset.theme;
+        else document.documentElement.dataset.theme = next;
+        render();
+      });
+      render();
+    </script>
+    <script>
+      // Full-width image toggle for article images.
+      // Single tap/click (or Enter/Space) expands to full screen width; a second
+      // tap/click restores. Long press and multi-touch are ignored on purpose.
+      const LONG_PRESS_MS = 450;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      document.querySelectorAll('article img').forEach((img) => {
+        const frame = document.createElement('span');
+        frame.className = 'img-frame';
+        img.before(frame);
+        frame.append(img);
+
+        img.setAttribute('tabindex', '0');
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-pressed', 'false');
+        img.setAttribute('aria-label', 'View image at full screen width');
+        img.draggable = false;
+
+        // Share button: uses the native share sheet where available,
+        // otherwise copies the image URL to the clipboard.
+        const shareBtn = document.createElement('button');
+        shareBtn.type = 'button';
+        shareBtn.className = 'img-share';
+        const shareIcon =
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3m0 0 4.5 4.5M12 3 7.5 7.5"></path><path d="M8 11H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-2"></path></svg>';
+        const checkIcon =
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5"></path></svg>';
+        shareBtn.innerHTML = shareIcon;
+        shareBtn.setAttribute('aria-label', 'Share image');
+        shareBtn.setAttribute('aria-haspopup', 'menu');
+        shareBtn.setAttribute('aria-expanded', 'false');
+        shareBtn.title = 'Share image';
+        frame.append(shareBtn);
+
+        const imageUrl = new URL(img.currentSrc || img.src, location.href).href;
+        const articleUrl = new URL(location.pathname, location.href).href;
+
+        // Native share where available, otherwise copy to clipboard.
+        // `copiedTarget` is the button whose icon should flip to a checkmark.
+        const shareOrCopy = async (url, copiedTarget) => {
+          const shareData = { title: document.title, url };
+          if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
+            try {
+              await navigator.share(shareData);
+            } catch {
+              /* user dismissed the share sheet */
+            }
+            return;
+          }
+          try {
+            await navigator.clipboard.writeText(url);
+          } catch {
+            return;
+          }
+          copiedTarget.classList.add('is-copied');
+          copiedTarget.innerHTML = checkIcon;
+          setTimeout(() => {
+            copiedTarget.classList.remove('is-copied');
+            copiedTarget.innerHTML = shareIcon;
+          }, 1600);
+        };
+
+        // Menu with two share targets: the graph image, or the article link.
+        const menu = document.createElement('span');
+        menu.className = 'share-menu';
+        menu.setAttribute('role', 'menu');
+        const imageOption = document.createElement('button');
+        imageOption.type = 'button';
+        imageOption.setAttribute('role', 'menuitem');
+        imageOption.setAttribute('aria-label', 'Share graph image');
+        imageOption.innerHTML =
+          `${shareIcon}<span>Share graph image</span>`;
+        const articleOption = document.createElement('button');
+        articleOption.type = 'button';
+        articleOption.setAttribute('role', 'menuitem');
+        articleOption.setAttribute('aria-label', 'Share article');
+        articleOption.innerHTML =
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"></path><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"></path></svg><span>Share article</span>';
+        menu.append(imageOption, articleOption);
+        frame.append(menu);
+
+        const closeMenu = () => {
+          menu.classList.remove('is-open');
+          shareBtn.setAttribute('aria-expanded', 'false');
+        };
+        const openMenu = () => {
+          menu.classList.add('is-open');
+          shareBtn.setAttribute('aria-expanded', 'true');
+          articleOption.focus();
+        };
+
+        imageOption.addEventListener('click', async () => {
+          closeMenu();
+          await shareOrCopy(imageUrl, imageOption);
+        });
+        articleOption.addEventListener('click', async () => {
+          closeMenu();
+          await shareOrCopy(articleUrl, articleOption);
+        });
+
+        shareBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (menu.classList.contains('is-open')) closeMenu();
+          else openMenu();
+        });
+        document.addEventListener('click', (e) => {
+          if (!frame.contains(e.target)) closeMenu();
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeMenu();
+        });
+
+        const toggle = () => {
+          const expanded = frame.classList.toggle('is-expanded');
+          img.setAttribute('aria-pressed', String(expanded));
+          img.setAttribute(
+            'aria-label',
+            expanded ? 'Return image to normal size' : 'View image at full screen width'
+          );
+          if (expanded) {
+            img.scrollIntoView({
+              behavior: reducedMotion.matches ? 'auto' : 'smooth',
+              block: 'nearest',
+            });
+          }
+        };
+
+        let downAt = 0;
+        let multiTouch = false;
+
+        img.addEventListener('pointerdown', (e) => {
+          if (!e.isPrimary) {
+            multiTouch = true;
+            return;
+          }
+          downAt = performance.now();
+          multiTouch = false;
+        });
+        img.addEventListener('pointerup', (e) => {
+          if (!e.isPrimary) multiTouch = true;
+        });
+        // Two-finger taps: nothing should happen.
+        img.addEventListener(
+          'touchstart',
+          (e) => {
+            if (e.touches.length > 1) multiTouch = true;
+          },
+          { passive: true }
+        );
+        img.addEventListener(
+          'touchend',
+          (e) => {
+            if (e.touches.length > 0) multiTouch = true;
+          },
+          { passive: true }
+        );
+        // Held press: nothing should happen (also suppresses the native
+        // long-press save/copy menu on touch devices).
+        img.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        img.addEventListener('click', () => {
+          if (multiTouch) return;
+          if (performance.now() - downAt > LONG_PRESS_MS) return;
+          toggle();
+        });
+        img.addEventListener('keydown', (e) => {
+          if (e.key !== 'Enter' && e.key !== ' ') return;
+          e.preventDefault();
+          toggle();
+        });
+      });
+    </script>
+  </body>
+</html>

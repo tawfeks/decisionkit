@@ -1,0 +1,44 @@
+/* Single source of truth for the site palette.
+   Brand: sky-cyan. Scale: Radix Colors "cyan" + "slate" (contrast-tuned, MIT).
+   Both src/layouts/Article.astro and scripts/make-benchmark-graph.mjs read from here. */
+:root {
+  --paper: #f2fafb;        /* cyan2 */
+  --ink: #1c2024;          /* slate12, neutral near-black for body text */
+  --muted: #60646c;        /* slate11 */
+  --heading: #0d3c48;      /* cyan12, brand-toned headlines */
+  --accent: #00a2c7;       /* cyan9 */
+  --accent-ink: #107d98;   /* cyan11, accessible text on paper */
+  --rule: #b5e9f0;         /* cyan5 */
+  --code-bg: #def7f9;      /* cyan3 */
+  --baseline-bar: #c2c8ce; /* slate7, neutral grey reads as reference, not "good" */
+  --mark: rgba(0, 162, 199, 0.22);
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  --paper: #101b20;        /* cyan dark2 */
+  --ink: #edeef0;          /* slate dark12, neutral body text */
+  --muted: #b0b4ba;        /* slate dark11 */
+  --heading: #b6ecf7;      /* cyan dark12, brand-toned headlines */
+  --accent: #23afd0;       /* cyan dark10 */
+  --accent-ink: #4ccce6;   /* cyan dark11 */
+  --rule: #003848;         /* cyan dark4 */
+  --code-bg: #082c36;      /* cyan dark3 */
+  --baseline-bar: #454b52; /* slate dark7 */
+  --mark: rgba(35, 175, 208, 0.28);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper: #101b20;
+    --ink: #edeef0;
+    --muted: #b0b4ba;
+    --heading: #b6ecf7;
+    --accent: #23afd0;
+    --accent-ink: #4ccce6;
+    --rule: #003848;
+    --code-bg: #082c36;
+    --baseline-bar: #454b52; /* slate dark7 */
+    --mark: rgba(35, 175, 208, 0.28);
+    color-scheme: dark;
+  }
+}

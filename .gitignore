@@ -24,7 +24,3 @@ docs/*
 !docs/design/
 docs/design/*
 !docs/design/context-routing.md
-
-
-site/
-deploy-pages.yml
