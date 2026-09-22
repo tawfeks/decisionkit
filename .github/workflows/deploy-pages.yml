@@ -25,6 +25,7 @@ jobs:
         uses: withastro/action@v3
         with:
           path: site
+          node-version: 22
         env:
           PUBLIC_X_PROFILE: ${{ secrets.PUBLIC_X_PROFILE || vars.PUBLIC_X_PROFILE }}
 
