@@ -13,7 +13,7 @@ date: 22 September 2026
 
 ## It all started with hating, a week before Jev
 
-I hate waiting and love shipping fast. Yet, coding agents feedback loop excel at making you wait. 23 mins is almost the bare minimum for anything meaningful built with coding agents.
+I hate waiting and love shipping fast. Yet, coding agents' feedback loops excel at making you wait. 23 mins is almost the bare minimum for anything meaningful built with coding agents.
 
 While writing the article, this is the coding agent going for 2m 41s at 77 t/s for just showing link preview and two options for sharing (one image and one for article) in this page:
 ![The coding agent going for 2m 41s at 77 t/s for just showing link preview and two options for sharing (one image and one for article) in this page](/decisionkit/LLMs-turn-for-share.webp)
@@ -80,7 +80,7 @@ LLMs benchmarking sucks, so mine might be not that different. But I believe in t
 
 ### Picking the least bloated coding agent: PI
 
-I saw a few months ago a chart about how bloated other coding agents are compared to Pi, so I said, if I'm going to achieve something, it would be compared to the most least bloated coding agent. LLM choice makes a difference, but a harness makes one as well. To my luck, routing in ext only worked in Pi, so testing it there didn't need to rewrite a complete harness with new loop.
+I saw a few months ago a chart about how bloated other coding agents are compared to Pi, so I said, if I'm going to achieve something, it would be compared to the least bloated coding agent. LLM choice makes a difference, but a harness makes one as well. To my luck, routing in ext only worked in Pi, so testing it there didn't need to rewrite a complete harness with new loop.
 
 At that time, Pi was at v0.85.1. Now, before publishing this article, it's updated to v0.87.0.
 
@@ -237,7 +237,7 @@ Run `npx decisionkit-cli init --agent pi` — it drops the full adapter into `.p
 
 ## A future to explore
 
-"Context routing" does sound exciting to experiment with using Jev & decision models. But for me, I think the entire archeticture of harnesses should be restructured based on this. They just suck, in a lot of things. CI, speed, and security are the main to go after, so a new harness should combine the 3 among other crucial features in one harness to minimize the feedback loop to its minimal size (and I'm already thinking about do so).
+"Context routing" does sound exciting to experiment with using Jev & decision models. But for me, I think the entire architecture of harnesses should be restructured based on this. They just suck, in a lot of things. CI, speed, and security are the main ones to go after, so a new harness should combine the 3 among other crucial features in one harness to minimize the feedback loop to its minimal size (and I'm already thinking about doing so).
 
 ## Conclusion
 
@@ -245,8 +245,8 @@ If you want one takeaway from the entire article, it is this:
 
 Decision models are a real shift worth spending time on, now.
 
-Why? Because LLMs are kinda made for tokenmaxing. That's by desgin I guess. On the other hand, decision models kinda force you to not have tokens in the first place, so you'll rethink how to achieve stuff with way less tokens naturally. That leads to great cost reduction and faster feedback loop. But to keep accuracy, you would need LLMs with it, but less than before.
+Why? Because LLMs are kinda made for tokenmaxing. That's by design I guess. On the other hand, decision models kinda force you to not have tokens in the first place, so you'll rethink how to achieve stuff with way less tokens naturally. That leads to great cost reduction and faster feedback loop. But to keep accuracy, you would need LLMs with it, but less than before.
 
-### Lastly, for Diogo: Thanks you from the bottom of my heart.
-I watched a video for Diogo, CEO of Typesafe, talking about how current LLMs are optimized for rewards and shared an embarressing example. No matter the user, they will try to please them to stay and talk to them. That may or may not lead to true automation. That's why stuff like tokenmaxing exists and the general people don't complain about it much yet. With decision models, you don't deal with tokens, you deal with code but a bit smarter. And adding LLMs to that, you would have world-class power in your hands in terms of speed, accuracy, and efficiency.
+### Lastly, for Diogo: Thank you from the bottom of my heart.
+I watched a video of Diogo, CEO of Typesafe, talking about how current LLMs are optimized for rewards, and he shared an embarrassing example. No matter the user, they will try to please them to stay and talk to them. That may or may not lead to true automation. That's why stuff like tokenmaxing exists and the general people don't complain about it much yet. With decision models, you don't deal with tokens, you deal with code but a bit smarter. And adding LLMs to that, you would have world-class power in your hands in terms of speed, accuracy, and efficiency.
 So, clearly, this is a real shift that would work for automation tasks. And I strongly believe in it.
